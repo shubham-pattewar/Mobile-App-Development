@@ -1,0 +1,42 @@
+[
+    {
+        "merged": "com.example.subtrack.app-merged_res-51:/drawable_circle_background.xml.flat",
+        "source": "com.example.subtrack.app-main-53:/drawable/circle_background.xml"
+    },
+    {
+        "merged": "com.example.subtrack.app-merged_res-51:/layout_activity_main.xml.flat",
+        "source": "com.example.subtrack.app-main-53:/layout/activity_main.xml"
+    },
+    {
+        "merged": "com.example.subtrack.app-merged_res-51:/navigation_nav_graph.xml.flat",
+        "source": "com.example.subtrack.app-main-53:/navigation/nav_graph.xml"
+    },
+    {
+        "merged": "com.example.subtrack.app-merged_res-51:/layout_fragment_analytics.xml.flat",
+        "source": "com.example.subtrack.app-main-53:/layout/fragment_analytics.xml"
+    },
+    {
+        "merged": "com.example.subtrack.app-merged_res-51:/layout_item_subscription.xml.flat",
+        "source": "com.example.subtrack.app-main-53:/layout/item_subscription.xml"
+    },
+    {
+        "merged": "com.example.subtrack.app-merged_res-51:/layout_fragment_dashboard.xml.flat",
+        "source": "com.example.subtrack.app-main-53:/layout/fragment_dashboard.xml"
+    },
+    {
+        "merged": "com.example.subtrack.app-merged_res-51:/menu_bottom_nav_menu.xml.flat",
+        "source": "com.example.subtrack.app-main-53:/menu/bottom_nav_menu.xml"
+    },
+    {
+        "merged": "com.example.subtrack.app-merged_res-51:/xml_preferences.xml.flat",
+        "source": "com.example.subtrack.app-main-53:/xml/preferences.xml"
+    },
+    {
+        "merged": "com.example.subtrack.app-merged_res-51:/layout_activity_add_edit_subscription.xml.flat",
+        "source": "com.example.subtrack.app-main-53:/layout/activity_add_edit_subscription.xml"
+    },
+    {
+        "merged": "com.example.subtrack.app-merged_res-51:/layout_fragment_subscription_list.xml.flat",
+        "source": "com.example.subtrack.app-main-53:/layout/fragment_subscription_list.xml"
+    }
+]

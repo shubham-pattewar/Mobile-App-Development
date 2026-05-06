@@ -1,0 +1,184 @@
+<div align="center">
+  <h1>📱 SubTrack 💳</h1>
+  <p><b>Your Personal Subscription Manager & Financial Health Tracker for Android</b></p>
+  <p>
+    <i>Keep track of your recurring expenses, analyze your spending habits, and never miss a renewal date again.</i>
+  </p>
+</div>
+
+---
+
+## 📖 Table of Contents
+- [About the Project](#-about-the-project)
+- [Key Features](#-key-features)
+- [Screens & Navigation](#-screens--navigation)
+- [Architecture & Data Flow](#%EF%B8%8F-architecture--data-flow)
+- [Database Schema](#-database-schema)
+- [Technology Stack & Dependencies](#%EF%B8%8F-technology-stack--dependencies)
+- [UI & Design System](#-ui--design-system)
+- [Installation & Setup](#%EF%B8%8F-installation--setup)
+- [Future Roadmap](#-future-roadmap)
+- [License](#-license)
+
+---
+
+## 🌟 About the Project
+
+SubTrack is a robust, privacy-first, and beautifully designed Android application engineered to help users seamlessly manage their recurring subscriptions. With the rise of the subscription economy, it's easy to lose track of what you're paying for. SubTrack solves this by providing an intuitive interface to catalog your expenses, powered by intelligent analytics and automated background reminders.
+
+All data is stored **locally** on your device using Room Database, ensuring your financial information remains private and secure.
+
+---
+
+## ✨ Key Features
+
+*   **📊 Interactive Dashboard**: A centralized hub displaying your total active subscriptions, your normalized monthly spending, and an interactive category-based Pie Chart.
+*   **📋 Comprehensive Subscription Management**: 
+    *   Add, edit, or delete subscriptions with granular details (Cost, Billing Cycle, Category, Next Renewal Date, Trial Periods, Payment Methods).
+    *   Use pre-built **Templates** (Netflix, Spotify, Amazon Prime, etc.) for lightning-fast data entry.
+*   **📈 Spending Analytics**: Dive deeper into your financial habits with historical data visualization and category breakdowns, powered by *MPAndroidChart*.
+*   **⏰ Smart Background Reminders**: Automated notifications powered by *Android WorkManager* ensure you're alerted before a subscription or free trial renews.
+*   **🔒 Built-In Security**: Secure your financial data with device-level *Biometric Authentication* (Fingerprint/Face Unlock).
+*   **🌙 Dynamic Theming**: Fully embraces Material Design 3 and seamlessly switches between Light and Dark themes, accented with a custom "Royal Violet & Electric Cyan" color palette.
+
+---
+
+## 📱 Screens & Navigation
+
+The app is built using a Single-Activity Architecture (primarily) with Jetpack Navigation Component managing the fragments.
+
+1.  **Splash Screen (`SplashActivity`)**: Initializes the app and smoothly transitions to the main content.
+2.  **Security Screen (`SecurityActivity`)**: Intercepts access if the user has enabled Biometric App Lock in their settings.
+3.  **Dashboard (`DashboardFragment`)**: The default landing page. Normalizes all yearly/weekly costs into a monthly equivalent and displays a breakdown via a Pie Chart.
+4.  **Subscriptions List (`SubscriptionListFragment`)**: A RecyclerView-powered list of all active/inactive subscriptions. Supports swipe-to-delete and click-to-edit.
+5.  **Add/Edit Subscription (`AddEditSubscriptionActivity`)**: A detailed form for entering subscription metadata. Includes a bottom-sheet/horizontal list of popular templates to auto-fill logos and colors.
+6.  **Analytics (`AnalyticsFragment`)**: Advanced charting for spending patterns over time.
+7.  **Settings (`SettingsFragment`)**: Manage preferences like currency, theme (Light/Dark/System), notification toggles, and biometric lock enablement.
+
+---
+
+## 🏗️ Architecture & Data Flow
+
+SubTrack strictly follows the **MVVM (Model-View-ViewModel)** architectural pattern recommended by Google. This ensures a clean separation of concerns, makes the codebase highly testable, and prevents memory leaks.
+
+```mermaid
+graph TD;
+    UI[UI Layer: Fragments & Activities] --> VM[ViewModel Layer: SubscriptionViewModel]
+    VM --> LiveData[LiveData / Flow]
+    LiveData --> UI
+    VM --> Repo[Repository Layer: SubscriptionRepository]
+    Repo --> DAO[Data Source: Room DAO]
+    DAO --> DB[(SQLite Database)]
+```
+
+### Folder Structure
+
+```text
+app/src/main/java/com/example/subtrack/
+├── data/
+│   ├── dao/           # Data Access Objects (SubscriptionDao)
+│   ├── database/      # Room Database Configuration (AppDatabase)
+│   ├── model/         # Entity Classes (Subscription, SubscriptionTemplate)
+│   └── repository/    # Single Source of Truth for Data (SubscriptionRepository)
+├── ui/
+│   ├── addedit/       # Logic for Adding/Editing subscriptions and Templates
+│   ├── analytics/     # Spending Analysis UI
+│   ├── dashboard/     # Main Overview UI
+│   ├── list/          # Recycler View setup for Subscriptions
+│   ├── settings/      # User Preferences
+│   ├── MainActivity.java
+│   ├── SecurityActivity.java # Biometric Lock screen
+│   └── SplashActivity.java   # App Initialization screen
+├── utils/             # Helper classes (NotificationUtils, TemplateProvider)
+├── viewmodel/         # UI-Data Intermediaries (SubscriptionViewModel)
+└── worker/            # Background Syncing & Alarms (RenewalReminderWorker)
+```
+
+---
+
+## 💾 Database Schema
+
+The core entity is `Subscription`, handled by `androidx.room`.
+
+| Field | Type | Description |
+| :--- | :--- | :--- |
+| `id` | `int` | Primary Key (Auto-generated) |
+| `name` | `String` | Name of the service (e.g., "Netflix") |
+| `category` | `String` | Type of service (Entertainment, Utility, etc.) |
+| `cost` | `double` | The price of the subscription |
+| `currency` | `String` | Localized currency (e.g., "USD", "INR") |
+| `billingCycle`| `String` | "monthly", "yearly", "weekly", "custom" |
+| `customCycleDays`| `int` | Fallback for non-standard billing cycles |
+| `startDate` | `long` | Unix timestamp of when the sub started |
+| `nextRenewalDate`| `long` | Unix timestamp for the upcoming charge |
+| `paymentMethod`| `String` | How it's paid (e.g., "Credit Card", "Paytm") |
+| `isTrial` | `boolean` | Flag for free trials |
+| `trialEndDate`| `long` | Unix timestamp for trial expiration |
+| `colorTag` | `String` | Hex color code for UI representation |
+| `reminderDaysBefore`| `int` | Days before renewal to trigger notification |
+| `isActive` | `boolean`| Whether the subscription is currently active |
+
+---
+
+## 🛠️ Technology Stack & Dependencies
+
+Built entirely in **Java** utilizing modern Android Jetpack libraries. 
+*Minimum SDK: 24 | Target SDK: 34*
+
+**Core Libraries:**
+*   `androidx.appcompat:appcompat:1.6.1`
+*   `com.google.android.material:material:1.11.0`
+*   `androidx.constraintlayout:constraintlayout:2.1.4`
+
+**Architecture & Jetpack:**
+*   **Room Database**: `androidx.room:room-runtime:2.6.1` (Local Data Persistence)
+*   **Lifecycle**: `androidx.lifecycle:lifecycle-viewmodel:2.7.0` & `lifecycle-livedata:2.7.0`
+*   **Navigation**: `androidx.navigation:navigation-fragment:2.7.6` (Single Activity setup)
+*   **WorkManager**: `androidx.work:work-runtime:2.9.0` (For `RenewalReminderWorker`)
+*   **Biometrics**: `androidx.biometric:biometric:1.1.0` (Fingerprint/Face Auth)
+*   **Preferences**: `androidx.preference:preference:1.2.1` (Settings Screen)
+
+**Third-Party:**
+*   **MPAndroidChart**: `com.github.PhilJay:MPAndroidChart:v3.1.0` (For Dashboard & Analytics visualizations)
+
+---
+
+## 🎨 UI & Design System
+
+The app utilizes a custom styling extending from Material 3 (`Theme.Material3.DayNight.NoActionBar`). 
+
+**Color Palette:**
+*   **Primary:** Royal Violet (`#8B5CF6`)
+*   **Secondary:** Electric Cyan (`#06B6D4`)
+*   **Tertiary:** Bright Fuchsia (`#D946EF`)
+*   **Success:** Green (`#22C55E`)
+*   **Error/Alert:** Vibrant Rose (`#F43F5E`)
+
+These colors are mapped directly to the Dashboard PieChart and form the core identity of the application.
+
+---
+
+## ⚙️ Installation & Setup
+
+1.  **Clone the repository:**
+    ```bash
+    git clone https://github.com/shubham-pattewar/Mobile-App-Development.git
+    ```
+2.  **Open Project:** Open the `SubTrack` directory using **Android Studio** (Giraffe or newer recommended).
+3.  **Sync Gradle:** Allow Android Studio to download dependencies and sync the project.
+4.  **Run:** Click the `Run` button (`Shift + F10`) to deploy the app to an emulator or connected physical device.
+
+---
+
+## 🚀 Future Roadmap
+
+*   **Cloud Sync:** Optional Firebase integration for cross-device synchronization.
+*   **OCR Receipt Scanning:** Ability to scan an invoice or email and auto-fill subscription details.
+*   **Multiple Currencies:** Advanced currency conversion for digital nomads tracking expenses globally.
+*   **Custom Tags:** Beyond standard categories, allow users to apply multiple custom tags to a subscription.
+
+---
+
+## 📜 License
+
+This project is licensed under the MIT License. See the `LICENSE` file for more information.

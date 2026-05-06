@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="currency_entries">
+        <item>US Dollar ($)</item>
+        <item>Euro (€)</item>
+        <item>British Pound (£)</item>
+        <item>Japanese Yen (¥)</item>
+    </string-array>
+    <string-array name="currency_values">
+        <item>$</item>
+        <item>€</item>
+        <item>£</item>
+        <item>¥</item>
+    </string-array>
+    <string-array name="reminder_days_entries">
+        <item>1 Day</item>
+        <item>3 Days</item>
+        <item>7 Days</item>
+    </string-array>
+    <string-array name="reminder_days_values">
+        <item>1</item>
+        <item>3</item>
+        <item>7</item>
+    </string-array>
+    <string name="app_name">SubTrack</string>
+    <style name="Base.Theme.SubTrack" parent="Theme.Material3.DayNight.NoActionBar">
+        <item name="colorPrimary">#006B5F</item>
+        <item name="colorOnPrimary">#FFFFFF</item>
+        <item name="colorPrimaryContainer">#76F8E1</item>
+        <item name="colorOnPrimaryContainer">#00201C</item>
+        <item name="colorSecondary">#4A635E</item>
+        <item name="colorOnSecondary">#FFFFFF</item>
+        <item name="colorSecondaryContainer">#CCE8E1</item>
+        <item name="colorOnSecondaryContainer">#05201B</item>
+        <item name="android:colorBackground">#FBFDFB</item>
+        <item name="colorOnBackground">#191C1B</item>
+        <item name="colorSurface">#FBFDFB</item>
+        <item name="colorOnSurface">#191C1B</item>
+        <item name="colorError">#BA1A1A</item>
+        <item name="colorOnError">#FFFFFF</item>
+        <item name="colorErrorContainer">#FFDAD6</item>
+        <item name="colorOnErrorContainer">#410002</item>
+        <item name="android:statusBarColor">@android:color/transparent</item>
+        <item name="android:windowLightStatusBar">true</item>
+    </style>
+    <style name="Theme.SubTrack" parent="Base.Theme.SubTrack"/>
+</resources>

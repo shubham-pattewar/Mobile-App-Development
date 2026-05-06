@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <PreferenceCategory app:title="General">
+        <ListPreference
+            app:key="default_currency"
+            app:title="Default Currency"
+            app:entries="@array/currency_entries"
+            app:entryValues="@array/currency_values"
+            app:defaultValue="₹"
+            app:useSimpleSummaryProvider="true" />
+            
+        <SwitchPreferenceCompat
+            app:key="dark_mode"
+            app:title="Dark Mode"
+            app:summary="Enable dark theme"
+            app:defaultValue="false" />
+    </PreferenceCategory>
+
+    <PreferenceCategory app:title="Notifications">
+        <SwitchPreferenceCompat
+            app:key="enable_notifications"
+            app:title="Enable Reminders"
+            app:summary="Receive notifications for upcoming renewals"
+            app:defaultValue="true" />
+            
+        <ListPreference
+            app:key="reminder_days"
+            app:title="Remind me before"
+            app:entries="@array/reminder_days_entries"
+            app:entryValues="@array/reminder_days_values"
+            app:defaultValue="7"
+            app:useSimpleSummaryProvider="true" />
+            
+        <Preference
+            app:key="test_notification"
+            app:title="Test Push Notification"
+            app:summary="Send a mock notification immediately"
+            app:icon="@android:drawable/ic_dialog_info" />
+    </PreferenceCategory>
+
+    <PreferenceCategory app:title="Security">
+        <SwitchPreferenceCompat
+            app:key="biometric_lock"
+            app:title="Biometric Lock"
+            app:summary="Lock app with fingerprint or face recognition"
+            app:defaultValue="false" />
+    </PreferenceCategory>
+    
+    <PreferenceCategory app:title="Data">
+        <Preference
+            app:key="export_csv"
+            app:title="Export Data"
+            app:summary="Export all subscriptions to a CSV file"
+            app:icon="@android:drawable/ic_menu_save" />
+    </PreferenceCategory>
+
+</PreferenceScreen>

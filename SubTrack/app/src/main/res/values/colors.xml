@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Primary: Royal Violet (Vibrant and elegant) -->
+    <color name="primary">#8B5CF6</color>
+    <color name="onPrimary">#FFFFFF</color>
+    <color name="primaryContainer">#4C1D95</color>
+    <color name="onPrimaryContainer">#EDE9FE</color>
+
+    <!-- Secondary: Electric Cyan (Sharp contrast) -->
+    <color name="secondary">#06B6D4</color>
+    <color name="onSecondary">#083344</color>
+    <color name="secondaryContainer">#164E63</color>
+    <color name="onSecondaryContainer">#CFFAFE</color>
+
+    <!-- Tertiary: Bright Fuchsia (Energy) -->
+    <color name="tertiary">#D946EF</color>
+    <color name="onTertiary">#FFFFFF</color>
+    <color name="tertiaryContainer">#701A75</color>
+    <color name="onTertiaryContainer">#FDF4FF</color>
+
+    <!-- Background: Deep Midnight Navy (Kept as requested) -->
+    <color name="background">#0F172A</color>
+    <color name="onBackground">#F8FAFC</color>
+
+    <!-- Surface: Slate Dark (Kept for depth) -->
+    <color name="surface">#1E293B</color>
+    <color name="onSurface">#F8FAFC</color>
+
+    <!-- Surface Variant: For cards/inputs (Kept for consistency) -->
+    <color name="surfaceVariant">#334155</color>
+    <color name="onSurfaceVariant">#CBD5E1</color>
+
+    <!-- Semantic Colors -->
+    <color name="success">#22C55E</color>
+    <color name="error">#EF4444</color>
+    <color name="onError">#FFFFFF</color>
+    <color name="outline">#475569</color>
+</resources>

@@ -1,0 +1,13 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <!-- Base application theme. -->
+    <style name="Base.Theme.FoodSafe" parent="Theme.Material3.DayNight.NoActionBar">
+        <item name="android:windowBackground">@color/background_dark</item>
+        <item name="colorPrimary">@color/neon_green</item>
+        <item name="colorOnPrimary">@color/background_dark</item>
+        <item name="colorSurface">@color/surface_dark</item>
+        <item name="colorOnSurface">@color/text_primary</item>
+        <item name="android:statusBarColor">@color/background_dark</item>
+    </style>
+
+    <style name="Theme.FoodSafe" parent="Base.Theme.FoodSafe" />
+</resources>
